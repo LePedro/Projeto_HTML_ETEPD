@@ -1,0 +1,206 @@
+/*Header, menu e coisas gerais*/
+header{
+    background-color: rgb(218, 165, 32);
+    padding: 20px;
+    text-decoration: none;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.topo {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+}
+div.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
+#menu{
+    list-style: none;
+    font-family: 'Times New Roman', Times, serif;
+}
+#menu > li {
+    display: inline-block;
+}
+#menu a{
+    text-decoration: none;
+    margin: 10px;
+    font-size: 20px;
+}
+#menu ul {
+    display: none;
+    position: absolute;
+    list-style: none;
+}
+#menu li:hover ul {
+    display: block;
+}
+html, body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #dedede;
+}
+.Hero{
+    background-color: rgb(245, 200, 70);
+    margin-bottom: 50px;
+    padding: 20px;
+    text-align:center;
+    font-size: 18px;
+}
+
+/*Menu de quadrinhos e livros*/
+.cards{
+    display: flex;
+    gap: 150px;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 100px;
+    font-family: Arial;
+}
+div.categoria {
+    padding: 20px;
+    background-color: white;
+}
+
+/*Dashboard*/
+.dashboard {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.perfil-dashboard {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.perfil-dashboard img {
+    display: block;
+    margin: 0 auto;
+}
+
+.perfil-dashboard ul {
+    text-align: left;
+}
+
+.adicionados {
+    width: 40%;
+    background-color: white;
+    padding: 20px;
+}
+
+.adicionados h2 {
+    text-align: center;
+}
+
+.adicionados table {
+    width: 100%;
+}
+
+.adicionados th,
+.adicionados td {
+    padding: 8px;
+}
+
+.lado-direito {
+    width: 30%;
+}
+
+.resumo {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.resumo h2 {
+    text-align: center;
+}
+
+.lendo {
+    background-color: white;
+    padding: 20px;
+}
+
+.lendo h2 {
+    text-align: center;
+}
+#catalogo h2{
+    text-align: center;
+}
+
+/*Home/index*/
+.button-home{
+    background-color: rgb(92, 64, 15);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/*Contatos*/
+#informs{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+.form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.agoravai{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 20px;
+    background-color: white;
+    max-width: 500px;
+}
+#contatos{
+    margin-top: 50px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Sobre*/
+.sobre {
+    width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+}
+
+.sobre h2 {
+    text-align: center;
+}
+
+.sobre p {
+    text-align: justify;
+    font-family: Arial;
+}
+
+.sobre li {
+    margin: 10px;
+}
+
+/*Footer*/
+footer {
+    background-color: rgb(139, 101, 8);
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
