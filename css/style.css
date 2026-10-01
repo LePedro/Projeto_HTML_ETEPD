@@ -23,6 +23,9 @@ div.logo {
 }
 #menu > li {
     display: inline-block;
+    padding: 10x;
+    background-color: #dedede;
+    border-radius: 10px;
 }
 #menu a{
     text-decoration: none;
@@ -33,10 +36,22 @@ div.logo {
     display: none;
     position: absolute;
     list-style: none;
+    border-radius: 10px;
 }
 #menu li:hover ul {
     display: block;
 }
+#menu > li a{
+    color: black;
+}
+.menu-hover-externo{
+    background-color: red;
+    padding: 8px;
+};
+.menu-hover-interno{
+    padding: 8px;
+    background-color: #dedede;
+};
 html, body {
     height: 100%;
 }
