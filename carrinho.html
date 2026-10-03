@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/script.js"></script>
-    <title>Document</title>
+    <title>Carrinho</title>
 </head>
+<style>
+
+</style>
+
 <header>
     <div class="topo">
         <div class="logo">
@@ -39,36 +42,34 @@
 <body>
     <main>
         <section class="Hero">
-            <h1 id="h1-index">Livros</h1>
-            <p>Navegue pela coleção de livros e quadrinhos</p>
+            <h1>Meu Carrinho</h1>
+            <p>
+                Confira os produtos adicionados ao seu carrinho.
+            </p>
         </section>
-        <section id="catalogo">
-            <h2>Coleção</h2>
-            <div class="cards">
-                <article class="catalogo">
-                    <img src="./img/hobbit.jpg" width="150px">
-                    <h3>O Hobbit</h3>
-                    <p>Autor: J.R.R. Tolkien</p>
-                    <p> R$ 40,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('O Hobbit', 40)">Adicionar ao carrinho</button>
-                </article>
-                <article class="catalogo">
-                    <img src="./img/crime-e-castigo.jpg" width="150px">
-                    <h3>Crime e Castigo</h3>
-                    <p>Autor: Fiódor Dostoiévski</p>
-                    <p> R$ 40,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('Crime e Castigo', 40)">Adicionar ao carrinho</button>
-                </article>
-                <article class="catalogo">
-                    <img src="./img/1984.jpg" width="150px">
-                    <h3>1984</h3>
-                    <p>Autor: George Orwell</p>
-                    <p> R$ 40,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('1984', 40)">Adicionar ao carrinho</button>
-                </article>
+
+        <section class="carrinho">
+            <h2>Produtos</h2>
+
+            <div id="produtos-carrinho">
+
+                <!-- javascript adiciona os produtos aqui não apague. -->
+
             </div>
         </section>
+
+        <section class="total">
+            <h2>Total da compra</h2>
+            <p id="total">
+                R$ 0,00
+            </p>
+            <a href="carrinho.html">
+                <button type="button" class="button-home" onclick="localStorage.clear();">Finalizar compra</button>
+            </a>
+        </section>
+
     </main>
+    <script src="./js/script.js"></script>
 </body>
 <footer>
     <nav aria-label="Links do Rodapé">

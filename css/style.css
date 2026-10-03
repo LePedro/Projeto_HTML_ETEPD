@@ -21,6 +21,7 @@ div.logo {
     list-style: none;
     font-family: 'Times New Roman', Times, serif;
 }
+
 #menu > li {
     display: inline-block;
     padding: 10x;
@@ -37,20 +38,29 @@ div.logo {
     position: absolute;
     list-style: none;
     border-radius: 10px;
+    margin-left: -40px;
+}
+#menu li:hover{
+    background-color: rgb(92, 64, 15);
+    border-radius: 10px;
+}
+#menu > li a:hover{
+    color: white;
 }
 #menu li:hover ul {
     display: block;
-}
+};
 #menu > li a{
     color: black;
 }
 .menu-hover-externo{
-    background-color: red;
+    background-color: #dedede;
     padding: 8px;
+    border-radius: 10px;
 };
 .menu-hover-interno{
     padding: 8px;
-    background-color: #dedede;
+    margin-top: 10px;
 };
 html, body {
     height: 100%;
@@ -224,6 +234,25 @@ div.categoria {
 
 .sobre li {
     margin: 10px;
+    font-size: 20px;
+}
+/*Carrinho*/
+.total{
+    width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.carrinho{
+    width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
 }
 
 /*Footer*/
