@@ -53,6 +53,11 @@ CREATE TABLE pedidos (
     FOREIGN KEY (id_usuario) references usuario (id_usuario)
 );
 
+CREATE TABLE cupom (
+    id_cupom INT AUTO_INCREMENT PRIMARY KEY,
+    valor
+);
+
 /*CONSULTAS*/
 
 INSERT INTO usuario (nome_usuario, email, telefone, cpf, data_nascimento) VALUES

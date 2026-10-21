@@ -1,0 +1,5 @@
+Quantos alunos tem a idade acima de 16 anos:
+
+SELECT nome_usuario FROM usuario 
+WHERE DATE < 2010-01-01
+ORDER BY nome_usuario ASC;
