@@ -1,0 +1,70 @@
+ORGANOGRAMA DO PROJETO — PEDRO PAGES
+====================================
+
+PEDRO PAGES
+|
++-- 1. PÁGINAS HTML
+|   |
+|   +-- index.html ............ Página inicial; acesso ao catálogo
+|   +-- livros.html ........... Catálogo de livros; permite adicionar ao carrinho
+|   +-- quadrinhos.html ....... Catálogo de quadrinhos; permite adicionar ao carrinho
+|   +-- carrinho.html ......... Lista itens adicionados e calcula o total
+|   +-- login.html ............ Formulário de login; direciona ao dashboard
+|   +-- dashboard.html ......... Dados do usuário, itens recentes e resumo da coleção
+|   +-- contato.html .......... Formulário e informações de contato
+|   +-- sobre.html ............ Descrição e objetivo do projeto
+|
++-- 2. RECURSOS COMPARTILHADOS
+|   |
+|   +-- assets/
+|       +-- css/
+|       |   +-- style.css ..... Estilos visuais e layout
+|       +-- js/
+|       |   +-- script.js ..... Funções do carrinho e armazenamento local
+|       +-- img/
+|           +-- icone.png, placeholder.jpg
+|           +-- capas de livros e quadrinhos
+|           +-- ícones de categorias
+|
++-- 3. BANCO DE DADOS (MODELO SQL)
+|   |
+|   +-- assets/sql/loja.sql
+|       +-- produtos
+|       +-- usuario
+|       +-- funcionarios
+|       +-- fornecedor
+|       +-- pedidos
+|       +-- cupom
+|   +-- assets/sql/consultas.txt
+|
++-- 4. NAVEGAÇÃO PRINCIPAL
+|   |
+|   +-- Home (index.html)
+|   +-- Coleção
+|   |   +-- Livros (livros.html)
+|   |   +-- Quadrinhos (quadrinhos.html)
+|   +-- Dashboard
+|   +-- Contato
+|   +-- Sobre
+|   +-- Carrinho
+|   +-- Login
+|
++-- 5. FLUXO DO CARRINHO
+    |
+    +-- livros.html / quadrinhos.html
+    |       |
+    |       +-- botão "Adicionar ao carrinho"
+    |               |
+    |               v
+    +-- assets/js/script.js
+    |       +-- salva os itens no localStorage do navegador
+    |       +-- recupera os itens e calcula o total
+    |               |
+    |               v
+    +-- carrinho.html
+            +-- mostra os produtos e o total da compra
+
+Observação:
+O SQL representa um modelo de banco de dados do projeto. Pelos arquivos analisados,
+o carrinho utiliza localStorage no navegador; não há evidência de conexão ativa
+entre as páginas HTML e o banco SQL.
