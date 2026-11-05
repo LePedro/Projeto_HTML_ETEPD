@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Cadastro</title>
+
+<style>
+.login {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.login .input {
+    margin-bottom: 15px;
+}
+
+.login label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.login button {
+    padding: 8px 20px;
+}
+    </style>
+</head>
+<header>
+    <div class="topo">
+        <div class="logo">
+            <img src="./assets/img/icone.png" width="50px">
+            <span>Pedro Pages</span>
+        </div>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Coleção</a>
+                    <ul>
+                        <div class="menu-hover-externo">
+                            <div class="menu-hover-interno">
+                                <li><a href="livros.html">Livros</a></li>
+                                <li><a href="quadrinhos.html">Quadrinhos</a></li>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+                <li><a href="dashboard.html">Dasboard</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<body>
+    <div class="login">
+        <h1>Login</h1>
+        <form action="dashboard.html" method="get">
+            <div class="categoria">
+            <div class="input">
+                <label for="user">Usuário</label>
+                <input type="text" id="user" required>
+            </div>
+            <div class="input">
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" required>
+            </div>
+            <div class="input">
+                <label for="Senha">Senha</label>
+                <input type="password" maxlength = "12" required>
+            </div>
+            <div class="input">
+                <label for="cpf" >CPF</label>
+                <input type="text" id="cpf" maxlength = "14" required>
+            </div>
+            <button type="submit">Enviar</button>
+        </div>
+        </form>
+    </div>
+</body>
+<footer>
+    <nav aria-label="Links do Rodapé">
+        <a href="index.html">Home</a>
+        <a href="contato.html">Contato</a>
+        <a href="sobre.html">Sobre</a>
+    </nav>
+    <p>© 2026 Pedro Pages. Todos os direitos reservados.</p>
+</footer>
+</html>

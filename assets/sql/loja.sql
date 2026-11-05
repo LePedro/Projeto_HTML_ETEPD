@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS loja;
+CREATE DATABASE IF NOT EXISTS pedro_pages;
 
-USE DATABASE loja;
+USE pedro_pages;
 
 CREATE TABLE produtos (
     id_livro INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,7 +55,7 @@ CREATE TABLE pedidos (
 
 CREATE TABLE cupom (
     id_cupom INT AUTO_INCREMENT PRIMARY KEY,
-    valor
+    valor DECIMAL(10,2)
 );
 
 /*CONSULTAS*/
