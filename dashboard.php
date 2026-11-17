@@ -7,35 +7,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-<header>
-    <div class="topo">
-        <div class="logo">
-            <img src="./assets/img/icone.png" width="50px">
-            <span>Pedro Pages</span>
-        </div>
-        <nav>
-            <ul id="menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Coleção</a>
-                    <ul>
-                        <div class="menu-hover-externo">
-                            <div class="menu-hover-interno">
-                                <li><a href="livros.html">Livros</a></li>
-                                <li><a href="quadrinhos.html">Quadrinhos</a></li>
-                            </div>
-                        </div>
-                    </ul>
-                </li>
-                <li><a href="dashboard.html">Dasboard</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="carrinho.html">Carrinho</a></li>
-                <li><a href="cadastro.html">Cadastro</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<?php include 'includes/header.php'; ?>
 <main>
     <section class="Hero">
         <h1>Dashboard</h1>
@@ -119,13 +91,6 @@
         </div>
     </div>
 </main>
-<footer>
-    <nav aria-label="Links do Rodapé">
-        <a href="index.html">Home</a>
-        <a href="contato.html">Contato</a>
-        <a href="sobre.html">Sobre</a>
-    </nav>
-    <p>© 2026 Pedro Pages. Todos os direitos reservados.</p>
-</footer>
+<?php include 'includes/footer.php'; ?>
 </body>
 </html>

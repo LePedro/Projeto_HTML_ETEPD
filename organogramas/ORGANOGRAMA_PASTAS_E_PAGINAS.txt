@@ -5,14 +5,14 @@ PEDRO PAGES
 |
 +-- 1. PÁGINAS HTML
 |   |
-|   +-- index.html ............ Página inicial; acesso ao catálogo
-|   +-- livros.html ........... Catálogo de livros; permite adicionar ao carrinho
-|   +-- quadrinhos.html ....... Catálogo de quadrinhos; permite adicionar ao carrinho
-|   +-- carrinho.html ......... Lista itens adicionados e calcula o total
-|   +-- login.html ............ Formulário de login; direciona ao dashboard
-|   +-- dashboard.html ......... Dados do usuário, itens recentes e resumo da coleção
-|   +-- contato.html .......... Formulário e informações de contato
-|   +-- sobre.html ............ Descrição e objetivo do projeto
+|   +-- index.php ............ Página inicial; acesso ao catálogo
+|   +-- livros.php ........... Catálogo de livros; permite adicionar ao carrinho
+|   +-- quadrinhos.php ....... Catálogo de quadrinhos; permite adicionar ao carrinho
+|   +-- carrinho.php ......... Lista itens adicionados e calcula o total
+|   +-- login.php ............ Formulário de login; direciona ao dashboard
+|   +-- dashboard.php ......... Dados do usuário, itens recentes e resumo da coleção
+|   +-- contato.php .......... Formulário e informações de contato
+|   +-- sobre.php ............ Descrição e objetivo do projeto
 |
 +-- 2. RECURSOS COMPARTILHADOS
 |   |
@@ -39,10 +39,10 @@ PEDRO PAGES
 |
 +-- 4. NAVEGAÇÃO PRINCIPAL
 |   |
-|   +-- Home (index.html)
+|   +-- Home (index.php)
 |   +-- Coleção
-|   |   +-- Livros (livros.html)
-|   |   +-- Quadrinhos (quadrinhos.html)
+|   |   +-- Livros (livros.php)
+|   |   +-- Quadrinhos (quadrinhos.php)
 |   +-- Dashboard
 |   +-- Contato
 |   +-- Sobre
@@ -51,7 +51,7 @@ PEDRO PAGES
 |
 +-- 5. FLUXO DO CARRINHO
     |
-    +-- livros.html / quadrinhos.html
+    +-- livros.php / quadrinhos.php
     |       |
     |       +-- botão "Adicionar ao carrinho"
     |               |
@@ -61,7 +61,7 @@ PEDRO PAGES
     |       +-- recupera os itens e calcula o total
     |               |
     |               v
-    +-- carrinho.html
+    +-- carrinho.php
             +-- mostra os produtos e o total da compra
 
 Observação:
