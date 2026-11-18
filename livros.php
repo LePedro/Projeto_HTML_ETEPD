@@ -1,3 +1,7 @@
+<?php
+require 'includes/conexao.php';
+$categoria = 'Livro';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,29 +21,7 @@
         </section>
         <section id="catalogo">
             <h2>Coleção</h2>
-            <div class="cards">
-                <article class="catalogo">
-                    <img src="./assets/img/hobbit.jpg" width="150px">
-                    <h3>O Hobbit</h3>
-                    <p>Autor: J.R.R. Tolkien</p>
-                    <p> R$ 40,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('O Hobbit', 40)">Adicionar ao carrinho</button>
-                </article>
-                <article class="catalogo">
-                    <img src="./assets/img/crime-e-castigo.jpg" width="150px">
-                    <h3>Crime e Castigo</h3>
-                    <p>Autor: Fiódor Dostoiévski</p>
-                    <p> R$ 40,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('Crime e Castigo', 40)">Adicionar ao carrinho</button>
-                </article>
-                <article class="catalogo">
-                    <img src="./assets/img/1984.jpg" width="150px">
-                    <h3>1984</h3>
-                    <p>Autor: George Orwell</p>
-                    <p> R$ 40,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('1984', 40)">Adicionar ao carrinho</button>
-                </article>
-            </div>
+            <?php include 'includes/produtos.php'; ?>
         </section>
     </main>
 </body>

@@ -1,3 +1,21 @@
+<?php
+require 'includes/conexao.php';
+
+$erro = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $stmt = $pdo->prepare('SELECT id_usuario, senha FROM usuario WHERE email = ?');
+    $stmt->execute([trim($_POST['email'])]);
+    $usuario = $stmt->fetch();
+
+    if ($usuario && password_verify($_POST['senha'], $usuario['senha'])) {
+        $_SESSION['id_usuario'] = $usuario['id_usuario'];
+        header('Location: dashboard.php');
+        exit;
+    }
+    $erro = 'E-mail ou senha incorretos.';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,15 +56,16 @@
 <body>
     <div class="login">
         <h1>Login</h1>
-        <form action="dashboard.php" method="get">
+        <?php if ($erro): ?><p><?= $erro ?></p><?php endif; ?>
+        <form method="post">
             <div class="categoria">
             <div class="input">
                 <label for="email">E-Mail</label>
-                <input type="text" id="email">
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="input">
                 <label for="Senha">Senha</label>
-                <input type="password">
+                <input type="password" id="Senha" name="senha" required>
             </div>
             <button type="submit">Enviar</button>
         </div>

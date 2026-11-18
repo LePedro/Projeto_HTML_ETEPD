@@ -1,3 +1,7 @@
+<?php
+require 'includes/conexao.php';
+$categoria = 'Quadrinho';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,29 +21,7 @@
         </section>
         <section id="catalogo">
             <h2>Coleção</h2>
-            <div class="cards">
-                <article class="catalogo">
-                    <img src="./assets/img/superman.jpg" width="150px">
-                    <h3>All Star Superman</h3>
-                    <p>Autor: Grant Morrison</p>
-                    <p> R$ 25,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('All Star Superman', 25)">Adicionar ao carrinho</button>
-                </article>
-                <article class="catalogo">
-                    <img src="./assets/img/hq-2.webp" width="150px">
-                    <h3>Absolute Martian Manhunter Vol.1: Martian Vision</h3>
-                    <p>Autor: Deniz Camp</p>
-                    <p> R$ 25,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('Absolute Martian Manhunter Vol.1: Martian Vision', 25)">Adicionar ao carrinho</button>
-                </article>
-                <article class="catalogo">
-                    <img src="./assets/img/invencivel.jpg" width="150px">
-                    <h3>Invencível Foil Edition</h3>
-                    <p>Autor: Robert Kirkman</p>
-                    <p> R$ 25,00</p>
-                    <button type="button" class="button-home" onclick="adicionarCarrinho('Invencível Foil Edition', 25)">Adicionar ao carrinho</button>
-                </article>
-            </div>
+            <?php include 'includes/produtos.php'; ?>
         </section>
     </main>
 </body>
