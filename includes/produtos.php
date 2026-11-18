@@ -2,7 +2,7 @@
 $stmt = $pdo->prepare('SELECT nome, autor, preco, imagem FROM produtos WHERE categoria = ? ORDER BY nome');
 $stmt->execute([$categoria]);
 ?>
-<div class="cards">
+<div class="cards produtos">
     <?php foreach ($stmt as $p): ?>
         <article class="catalogo">
             <img src="./assets/img/<?= htmlspecialchars($p['imagem'] ?: 'placeholder.jpg') ?>" width="150px">

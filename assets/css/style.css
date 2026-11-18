@@ -90,6 +90,45 @@ body {
     padding-bottom: 100px;
     font-family: Arial;
 }
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(3, 280px);
+    gap: 40px;
+    justify-content: center;
+}
+
+.produtos article {
+    width: 280px;
+    height: 460px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.produtos article img {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+}
+
+.produtos article h3 {
+    margin: 15px 0 5px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.produtos article p {
+    margin: 5px 0;
+}
+
+.produtos article button {
+    margin-top: auto;
+}
+
 div.categoria {
     padding: 20px;
     background-color: white;
