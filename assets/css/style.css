@@ -301,3 +301,24 @@ footer {
     color: white;
     text-align: center;
 }
+
+/*Mensagem de aviso e erro*/
+
+.aviso {
+    background: #e6f4ea;
+    color: #1e5631;
+    border: 1px solid #a8d5b5;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 600px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.erro {
+    background: #fdecea;
+    color: #8a1c1c;
+    border: 1px solid #f5b5b0;
+    padding: 10px;
+    border-radius: 6px;
+}

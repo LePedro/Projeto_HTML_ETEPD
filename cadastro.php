@@ -1,87 +1,128 @@
 <?php
 require 'includes/conexao.php';
+require 'includes/funcoes.php';
+
+$setores = $pdo->query('SELECT id_setor, nome FROM setores WHERE ativo = 1 ORDER BY nome')->fetchAll();
+$perfis = $pdo->query('SELECT id_perfil, nome FROM perfis WHERE ativo = 1 ORDER BY nome')->fetchAll();
 
 $erro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        $stmt = $pdo->prepare('INSERT INTO usuario (nome_usuario, email, senha, cpf) VALUES (?, ?, ?, ?)');
-        $stmt->execute([
-            trim($_POST['nome']),
-            trim($_POST['email']),
-            password_hash($_POST['senha'], PASSWORD_DEFAULT),
-            trim($_POST['cpf'])
-        ]);
-        header('Location: login.php');
-        exit;
-    } catch (PDOException $e) {
-        $erro = 'E-mail ou CPF já cadastrado.';
+    $nome = trim($_POST['nome'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $senha = $_POST['senha'] ?? '';
+    $cpf = preg_replace('/\D/', '', $_POST['cpf'] ?? '');
+    $setorId = (int) ($_POST['setor_id'] ?? 0);
+    $perfilId = (int) ($_POST['perfil_id'] ?? 0);
+
+    if ($nome === '' || $email === '' || $senha === '' || $cpf === '' || $setorId === 0 || $perfilId === 0) {
+        $erro = 'Preencha todos os campos.';
+    } else {
+        try {
+            $stmt = $pdo->prepare(
+                'INSERT INTO usuario (nome_usuario, email, senha, cpf, setor_id, perfil_id) VALUES (?, ?, ?, ?, ?, ?)'
+            );
+            $stmt->execute([$nome, $email, password_hash($senha, PASSWORD_DEFAULT), $cpf, $setorId, $perfilId]);
+
+            registrarAuditoria($pdo, $pdo->lastInsertId(), 'CADASTRO', 'Sucesso');
+
+            $_SESSION['mensagem'] = 'Cadastro realizado com sucesso. Faça login para continuar.';
+            header('Location: login.php');
+            exit;
+        } catch (PDOException $e) {
+            if ($e->getCode() === '23000') {
+                $erro = 'Não foi possível cadastrar. E-mail ou CPF já existe, ou o setor/perfil é inválido.';
+            } else {
+                error_log($e->getMessage());
+                $erro = 'Erro ao cadastrar. Tente novamente.';
+            }
+        }
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Cadastro</title>
+    <style>
+    .login {
+        width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        text-align: center;
+    }
 
-<style>
-.login {
-    width: 300px;
-    margin: 50px auto;
-    padding: 20px;
-    text-align: center;
-}
+    .login .input {
+        margin-bottom: 15px;
+    }
 
-.login .input {
-    margin-bottom: 15px;
-}
+    .login label {
+        display: block;
+        margin-bottom: 5px;
+    }
 
-.login label {
-    display: block;
-    margin-bottom: 5px;
-}
+    .login input,
+    .login select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
 
-.login input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-.login button {
-    padding: 8px 20px;
-}
+    .login button {
+        padding: 8px 20px;
+    }
     </style>
 </head>
-<?php include 'includes/header.php'; ?>
 <body>
-    <div class="login">
-        <h1>Cadastro</h1>
-        <?php if ($erro): ?><p><?= $erro ?></p><?php endif; ?>
-        <form method="post">
-            <div class="categoria">
-            <div class="input">
-                <label for="user">Usuário</label>
-                <input type="text" id="user" name="nome" required>
-            </div>
-            <div class="input">
-                <label for="email">E-Mail</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="input">
-                <label for="Senha">Senha</label>
-                <input type="password" id="Senha" name="senha" maxlength="12" required>
-            </div>
-            <div class="input">
-                <label for="cpf" >CPF</label>
-                <input type="text" id="cpf" name="cpf" maxlength="14" required>
-            </div>
-            <button type="submit">Enviar</button>
+<?php include 'includes/header.php'; ?>
+<div class="login">
+    <h1>Cadastro</h1>
+
+    <?php if ($erro): ?>
+        <p class="erro"><?= e($erro) ?></p>
+    <?php endif; ?>
+
+    <form method="post" action="cadastro.php">
+        <div class="input">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
         </div>
-        </form>
-    </div>
-</body>
+        <div class="input">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required>
+        </div>
+        <div class="input">
+            <label for="cpf">CPF</label>
+            <input type="text" id="cpf" name="cpf" required>
+        </div>
+        <div class="input">
+            <label for="setor_id">Setor</label>
+            <select id="setor_id" name="setor_id" required>
+                <option value="">Selecione um setor</option>
+                <?php foreach ($setores as $setor): ?>
+                    <option value="<?= $setor['id_setor'] ?>"><?= e($setor['nome']) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="input">
+            <label for="perfil_id">Perfil</label>
+            <select id="perfil_id" name="perfil_id" required>
+                <option value="">Selecione um perfil</option>
+                <?php foreach ($perfis as $perfil): ?>
+                    <option value="<?= $perfil['id_perfil'] ?>"><?= e($perfil['nome']) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
 <?php include 'includes/footer.php'; ?>
+</body>
 </html>

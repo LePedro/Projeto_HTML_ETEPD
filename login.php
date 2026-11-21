@@ -1,23 +1,28 @@
 <?php
 require 'includes/conexao.php';
+require 'includes/funcoes.php';
 
 $erro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('SELECT id_usuario, senha FROM usuario WHERE email = ?');
-    $stmt->execute([trim($_POST['email'])]);
+    $stmt->execute([trim($_POST['email'] ?? '')]);
     $usuario = $stmt->fetch();
 
-    if ($usuario && password_verify($_POST['senha'], $usuario['senha'])) {
+    if ($usuario && password_verify($_POST['senha'] ?? '', $usuario['senha'])) {
         $_SESSION['id_usuario'] = $usuario['id_usuario'];
         header('Location: dashboard.php');
         exit;
     }
+
     $erro = 'E-mail ou senha incorretos.';
 }
+
+$mensagem = $_SESSION['mensagem'] ?? '';
+unset($_SESSION['mensagem']);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,25 +57,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
     </style>
 </head>
-<?php include 'includes/header.php'; ?>
 <body>
+<?php include 'includes/header.php'; ?>
     <div class="login">
         <h1>Login</h1>
-        <?php if ($erro): ?><p><?= $erro ?></p><?php endif; ?>
+
+        <?php if ($mensagem): ?>
+            <p class="aviso"><?= e($mensagem) ?></p>
+        <?php endif; ?>
+
+        <?php if ($erro): ?>
+            <p class="erro-geral"><?= e($erro) ?></p>
+        <?php endif; ?>
+
         <form method="post">
             <div class="categoria">
-            <div class="input">
-                <label for="email">E-Mail</label>
-                <input type="email" id="email" name="email" required>
+                <div class="input">
+                    <label for="email">E-Mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input">
+                    <label for="Senha">Senha</label>
+                    <input type="password" id="Senha" name="senha" required>
+                </div>
+                <button type="submit">Enviar</button>
             </div>
-            <div class="input">
-                <label for="Senha">Senha</label>
-                <input type="password" id="Senha" name="senha" required>
-            </div>
-            <button type="submit">Enviar</button>
-        </div>
         </form>
     </div>
-</body>
 <?php include 'includes/footer.php'; ?>
+</body>
 </html>
