@@ -328,3 +328,32 @@ footer {
     color: #b00020;
     margin-top: 4px;
 }
+
+.listagem {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.busca {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.busca input {
+    flex: 1;
+    padding: 8px;
+}
+
+.tabela-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-usuarios th,
+.tabela-usuarios td {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}

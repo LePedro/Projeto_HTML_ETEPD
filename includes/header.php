@@ -18,6 +18,7 @@
                     </ul>
                 </li>
                 <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="usuarios.php">Usuários</a></li>
                 <li><a href="contato.php">Contato</a></li>
                 <li><a href="sobre.php">Sobre</a></li>
                 <li><a href="carrinho.php">Carrinho</a></li>
