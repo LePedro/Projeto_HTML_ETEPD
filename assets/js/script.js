@@ -1,3 +1,5 @@
+//Adicionar no carrinho (talvez mude no futuro)
+
 function adicionarCarrinho(nome, preco) {
 
     let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
@@ -47,6 +49,5 @@ function mostrarCarrinho() {
 
     total.textContent = "R$ " + valorTotal.toFixed(2);
 }
-
 
 mostrarCarrinho();

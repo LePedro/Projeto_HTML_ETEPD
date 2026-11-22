@@ -322,3 +322,9 @@ footer {
     padding: 10px;
     border-radius: 6px;
 }
+
+.erro-campo {
+    display: block;
+    color: #b00020;
+    margin-top: 4px;
+}

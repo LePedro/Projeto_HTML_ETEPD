@@ -5,7 +5,12 @@ require 'includes/funcoes.php';
 $setores = $pdo->query('SELECT id_setor, nome FROM setores WHERE ativo = 1 ORDER BY nome')->fetchAll();
 $perfis = $pdo->query('SELECT id_perfil, nome FROM perfis WHERE ativo = 1 ORDER BY nome')->fetchAll();
 
-$erro = '';
+$erros = [];
+$nome = '';
+$email = '';
+$cpf = '';
+$setorId = 0;
+$perfilId = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = trim($_POST['nome'] ?? '');
@@ -15,9 +20,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $setorId = (int) ($_POST['setor_id'] ?? 0);
     $perfilId = (int) ($_POST['perfil_id'] ?? 0);
 
-    if ($nome === '' || $email === '' || $senha === '' || $cpf === '' || $setorId === 0 || $perfilId === 0) {
-        $erro = 'Preencha todos os campos.';
-    } else {
+    if (mb_strlen($nome) < 3) {
+        $erros['nome'] = 'O nome deve ter pelo menos 3 letras.';
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erros['email'] = 'Informe um e-mail válido.';
+    }
+
+    if (strlen($senha) < 6 || strlen($senha) > 12) {
+        $erros['senha'] = 'A senha deve ter entre 6 e 12 caracteres.';
+    }
+
+    if (strlen($cpf) !== 11) {
+        $erros['cpf'] = 'O CPF deve ter 11 números.';
+    }
+
+    $stmt = $pdo->prepare('SELECT COUNT(*) FROM setores WHERE id_setor = ? AND ativo = 1');
+    $stmt->execute([$setorId]);
+    if ($stmt->fetchColumn() == 0) {
+        $erros['setor_id'] = 'Escolha um setor da lista.';
+    }
+
+    $stmt = $pdo->prepare('SELECT COUNT(*) FROM perfis WHERE id_perfil = ? AND ativo = 1');
+    $stmt->execute([$perfilId]);
+    if ($stmt->fetchColumn() == 0) {
+        $erros['perfil_id'] = 'Escolha um perfil da lista.';
+    }
+
+    if (count($erros) === 0) {
         try {
             $stmt = $pdo->prepare(
                 'INSERT INTO usuario (nome_usuario, email, senha, cpf, setor_id, perfil_id) VALUES (?, ?, ?, ?, ?, ?)'
@@ -31,10 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') {
-                $erro = 'Não foi possível cadastrar. E-mail ou CPF já existe, ou o setor/perfil é inválido.';
+                $erros['geral'] = 'Já existe um cadastro com este e-mail ou CPF.';
             } else {
                 error_log($e->getMessage());
-                $erro = 'Erro ao cadastrar. Tente novamente.';
+                $erros['geral'] = 'Erro ao cadastrar. Tente novamente.';
             }
         }
     }
@@ -81,48 +112,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="login">
     <h1>Cadastro</h1>
 
-    <?php if ($erro): ?>
-        <p class="erro"><?= e($erro) ?></p>
+    <?php if (isset($erros['geral'])): ?>
+        <p class="erro"><?= e($erros['geral']) ?></p>
     <?php endif; ?>
 
-    <form method="post" action="cadastro.php">
+    <form method="post" action="cadastro.php" novalidate>
         <div class="input">
             <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" id="nome" name="nome" value="<?= e($nome) ?>" required>
+            <small class="erro-campo"><?= e($erros['nome'] ?? '') ?></small>
         </div>
         <div class="input">
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" value="<?= e($email) ?>" required>
+            <small class="erro-campo"><?= e($erros['email'] ?? '') ?></small>
         </div>
         <div class="input">
             <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" required>
+            <input type="password" id="senha" name="senha" minlength="6" maxlength="12" required>
+            <small class="erro-campo"><?= e($erros['senha'] ?? '') ?></small>
         </div>
         <div class="input">
             <label for="cpf">CPF</label>
-            <input type="text" id="cpf" name="cpf" required>
+            <input type="text" id="cpf" name="cpf" maxlength="14" value="<?= e($cpf) ?>" required>
+            <small class="erro-campo"><?= e($erros['cpf'] ?? '') ?></small>
         </div>
         <div class="input">
             <label for="setor_id">Setor</label>
             <select id="setor_id" name="setor_id" required>
                 <option value="">Selecione um setor</option>
                 <?php foreach ($setores as $setor): ?>
-                    <option value="<?= $setor['id_setor'] ?>"><?= e($setor['nome']) ?></option>
+                    <option value="<?= $setor['id_setor'] ?>" <?= $setorId == $setor['id_setor'] ? 'selected' : '' ?>><?= e($setor['nome']) ?></option>
                 <?php endforeach; ?>
             </select>
+            <small class="erro-campo"><?= e($erros['setor_id'] ?? '') ?></small>
         </div>
         <div class="input">
             <label for="perfil_id">Perfil</label>
             <select id="perfil_id" name="perfil_id" required>
                 <option value="">Selecione um perfil</option>
                 <?php foreach ($perfis as $perfil): ?>
-                    <option value="<?= $perfil['id_perfil'] ?>"><?= e($perfil['nome']) ?></option>
+                    <option value="<?= $perfil['id_perfil'] ?>" <?= $perfilId == $perfil['id_perfil'] ? 'selected' : '' ?>><?= e($perfil['nome']) ?></option>
                 <?php endforeach; ?>
             </select>
+            <small class="erro-campo"><?= e($erros['perfil_id'] ?? '') ?></small>
         </div>
         <button type="submit">Enviar</button>
     </form>
 </div>
 <?php include 'includes/footer.php'; ?>
+<script src="./assets/js/usuarios.js"></script>
 </body>
 </html>
