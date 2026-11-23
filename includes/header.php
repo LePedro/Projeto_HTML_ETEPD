@@ -24,6 +24,7 @@
                 <li><a href="carrinho.php">Carrinho</a></li>
                 <li><a href="cadastro.php">Cadastro</a></li>
                 <li><a href="login.php">Login</a></li>
+                <li><a href="logout.php">Sair</a></li>
             </ul>
         </nav>
     </div>
