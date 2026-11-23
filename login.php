@@ -5,7 +5,7 @@ require 'includes/funcoes.php';
 $erro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stmt = $pdo->prepare('SELECT id_usuario, senha FROM usuario WHERE email = ?');
+    $stmt = $pdo->prepare("SELECT id_usuario, senha FROM usuario WHERE email = ? AND status = 'Ativo'");
     $stmt->execute([trim($_POST['email'] ?? '')]);
     $usuario = $stmt->fetch();
 

@@ -11,3 +11,16 @@ if (campoCpf) {
         campoCpf.value = numeros;
     });
 }
+
+const botoesExcluir = document.querySelectorAll('.btn-excluir');
+const dialogo = document.getElementById('dialogo-exclusao');
+const campoIdExcluir = document.getElementById('id-usuario-excluir');
+const nomeExcluir = document.getElementById('nome-usuario-excluir');
+
+botoesExcluir.forEach(function (botao) {
+    botao.addEventListener('click', function () {
+        campoIdExcluir.value = botao.dataset.id;
+        nomeExcluir.textContent = botao.dataset.nome;
+        dialogo.showModal();
+    });
+});

@@ -330,13 +330,22 @@ footer {
 }
 
 /*Usuários*/
+
+.listagem {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
 .listagem h1 {
-    width: 300px;
-    margin: 50px auto;
     padding: 20px;
     text-align: center;
 }
-
+div.card_usuario {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
 .busca {
     display: flex;
     gap: 10px;
@@ -358,4 +367,42 @@ footer {
     padding: 8px;
     border-bottom: 1px solid #ccc;
     text-align: left;
+}
+
+.btn-excluir {
+    background: #b00020;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dialogo {
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    width: 320px;
+}
+
+.botoes-dialogo {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.botao-cancelar,
+.botao-confirmar {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.botao-cancelar {
+    background: #ccc;
+}
+
+.botao-confirmar {
+    background: #b00020;
+    color: #fff;
 }
