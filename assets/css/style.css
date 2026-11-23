@@ -329,10 +329,12 @@ footer {
     margin-top: 4px;
 }
 
-.listagem {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
+/*Usuários*/
+.listagem h1 {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
 }
 
 .busca {

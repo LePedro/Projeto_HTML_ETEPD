@@ -11,10 +11,12 @@ $busca = trim($_GET['busca'] ?? '');
 $termo = '%' . $busca . '%';
 
 $stmt = $pdo->prepare(
-    "SELECT id_usuario, nome_usuario, email, cpf
-     FROM usuario
-     WHERE status = 'Ativo' AND (nome_usuario LIKE ? OR email LIKE ?)
-     ORDER BY nome_usuario"
+    "SELECT u.id_usuario, u.nome_usuario, u.email, u.cpf, s.nome AS setor, p.nome AS perfil
+     FROM usuario u
+     LEFT JOIN setores s ON s.id_setor = u.setor_id
+     LEFT JOIN perfis p ON p.id_perfil = u.perfil_id
+     WHERE u.status = 'Ativo' AND (u.nome_usuario LIKE ? OR u.email LIKE ?)
+     ORDER BY u.nome_usuario"
 );
 $stmt->execute([$termo, $termo]);
 $usuarios = $stmt->fetchAll();
@@ -32,6 +34,7 @@ $usuarios = $stmt->fetchAll();
 <main class="listagem">
     <h1>Usuários</h1>
 
+    <div class="categoria">
     <form method="get" action="usuarios.php" class="busca">
         <input type="text" name="busca" placeholder="Buscar por nome ou e-mail" value="<?= e($busca) ?>">
         <button type="submit">Buscar</button>
@@ -43,6 +46,8 @@ $usuarios = $stmt->fetchAll();
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th>CPF</th>
+                <th>Setor</th>
+                <th>Perfil</th>
             </tr>
         </thead>
         <tbody>
@@ -51,6 +56,8 @@ $usuarios = $stmt->fetchAll();
                     <td><?= e($usuario['nome_usuario']) ?></td>
                     <td><?= e($usuario['email']) ?></td>
                     <td><?= e($usuario['cpf']) ?></td>
+                    <td><?= e($usuario['setor'] ?? '-') ?></td>
+                    <td><?= e($usuario['perfil'] ?? '-') ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -59,6 +66,7 @@ $usuarios = $stmt->fetchAll();
     <?php if (count($usuarios) === 0): ?>
         <p>Nenhum usuário encontrado.</p>
     <?php endif; ?>
+    </div>
 </main>
 <?php include 'includes/footer.php'; ?>
 </body>
