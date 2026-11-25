@@ -104,11 +104,11 @@ INSERT INTO perfis (nome, ativo) VALUES
 ('Visitante', 0);
 
 INSERT INTO usuario (nome_usuario, email, senha, telefone, cpf, data_nascimento, endereco, setor_id, perfil_id) VALUES
-('Pedro Henrique', 'pedro1@email.com', '123456', '81912345678', '52998224725', '2002-07-29', 'Rua dos Alfeneiros, 221', 1, 1),
-('Pedro Sales', 'pedro2@email.com', '123456', '81987654321', '11144477735', '2002-05-06', 'Rua dos Feios, 420', 2, 2),
-('Pedro Lima', 'pedro3@email.com', '123456', '81911111111', '12345678909', '1984-07-29', 'Rua dos Bonitos, 13', 1, 3),
-('Pedro Conquistas', 'pedro4@email.com', '123456', '81933333333', '98765432100', '2002-06-24', 'Rua dos Burros, 22', 3, 2),
-('Pedro Ultimo', 'pedro5@email.com', '123456', '81977777777', '39053344705', '2007-09-30', 'Rua dos Gatos, 337', 2, 3);
+('Pedro Henrique', 'pedro1@email.com', '$2y$10$fPJadoIkvsSUbTQxFFVgYOeYc5TF1Rp9cFzsBpaxJsZ5W780GrfN6', '81912345678', '52998224725', '2002-07-29', 'Rua dos Alfeneiros, 221', 1, 1),
+('Pedro Sales', 'pedro2@email.com', '$2y$10$fPJadoIkvsSUbTQxFFVgYOeYc5TF1Rp9cFzsBpaxJsZ5W780GrfN6', '81987654321', '11144477735', '2002-05-06', 'Rua dos Feios, 420', 2, 2),
+('Pedro Lima', 'pedro3@email.com', '$2y$10$fPJadoIkvsSUbTQxFFVgYOeYc5TF1Rp9cFzsBpaxJsZ5W780GrfN6', '81911111111', '12345678909', '1984-07-29', 'Rua dos Bonitos, 13', 1, 3),
+('Pedro Conquistas', 'pedro4@email.com', '$2y$10$fPJadoIkvsSUbTQxFFVgYOeYc5TF1Rp9cFzsBpaxJsZ5W780GrfN6', '81933333333', '98765432100', '2002-06-24', 'Rua dos Burros, 22', 3, 2),
+('Pedro Ultimo', 'pedro5@email.com', '$2y$10$fPJadoIkvsSUbTQxFFVgYOeYc5TF1Rp9cFzsBpaxJsZ5W780GrfN6', '81977777777', '39053344705', '2007-09-30', 'Rua dos Gatos, 337', 2, 3);
 
 INSERT INTO produtos (nome, autor, paginas, categoria, capa, preco, estoque) VALUES
 ('O Hobbit','J.R.R. TOLKIEN','330','Livro','Normal','40.00','50'),
